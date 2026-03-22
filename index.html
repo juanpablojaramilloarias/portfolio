@@ -182,6 +182,69 @@
       font-size: .8rem; color: var(--muted);
     }
 
+    /* ── Deep Dive ── */
+    .deep-dive { background: var(--surface); }
+    .deep-dive .container { max-width: 800px; }
+    .dd-back {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .85rem; font-weight: 600; color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .dd-back::before { content: '←'; }
+    .dd-back:hover { color: var(--accent); text-decoration: none; }
+    .dd-hero-title { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--text); }
+    .dd-subtitle { font-size: 1rem; color: var(--muted); margin-top: .5rem; max-width: 600px; line-height: 1.7; }
+    .dd-stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem; margin: 2rem 0; padding: 1.5rem;
+      background: var(--accent-lt); border-radius: var(--radius);
+    }
+    .dd-stat { text-align: center; }
+    .dd-stat strong { display: block; font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+    .dd-stat span { font-size: .78rem; color: var(--muted); }
+    .dd-video {
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+      border-radius: var(--radius); margin: 2rem 0; box-shadow: var(--shadow);
+    }
+    .dd-video iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: var(--radius);
+    }
+    .dd-chapter { margin-bottom: 3rem; }
+    .dd-chapter-num {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .4rem;
+    }
+    .dd-chapter h3 { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: .75rem; }
+    .dd-chapter p { font-size: .92rem; color: var(--muted); margin-bottom: .75rem; line-height: 1.7; }
+    .dd-artifact {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.2rem 1.4rem; margin: 1rem 0;
+    }
+    .dd-artifact-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .4rem;
+    }
+    .dd-artifact h4 { font-size: .92rem; font-weight: 600; color: var(--text); margin-bottom: .35rem; }
+    .dd-artifact p { font-size: .84rem; color: var(--muted); line-height: 1.6; }
+    .dd-artifact ul { list-style: none; padding: 0; margin: .5rem 0 0; }
+    .dd-artifact ul li {
+      font-size: .84rem; color: var(--muted); padding: .25rem 0; padding-left: 1rem;
+      position: relative;
+    }
+    .dd-artifact ul li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .dd-timeline {
+      position: relative; padding-left: 1.5rem; margin: 1.5rem 0;
+      border-left: 2px solid var(--border);
+    }
+    .dd-timeline-item { position: relative; padding-bottom: 1.5rem; }
+    .dd-timeline-item::before {
+      content: ''; position: absolute; left: -1.75rem; top: .35rem;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--surface);
+    }
+    .dd-timeline-item h4 { font-size: .88rem; font-weight: 600; color: var(--text); }
+    .dd-timeline-item p { font-size: .84rem; color: var(--muted); margin-top: .2rem; }
+
     /* ── Scrollbar polish ── */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
@@ -201,6 +264,7 @@
       <span class="nav-name">JP</span>
       <ul class="nav-links">
         <li><a href="#work">Work</a></li>
+        <li><a href="#cronos-deep-dive">Cronos</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#builds">Builds</a></li>
         <li><a href="#about">About</a></li>
@@ -256,6 +320,7 @@
           <span class="tag">GTM</span>
           <span class="tag">Acquisition</span>
         </div>
+        <a href="#cronos-deep-dive" class="card-link" style="margin-top:1rem;">Read the full case study</a>
       </div>
 
       <div class="card-grid">
@@ -274,6 +339,198 @@
           <div class="tags"><span class="tag">GTM</span><span class="tag">Strategy</span><span class="tag">$14.5M raise</span></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Cronos Deep Dive ── -->
+  <section id="cronos-deep-dive" class="deep-dive">
+    <div class="container">
+      <a href="#work" class="dd-back">Back to all work</a>
+      <div class="tags" style="margin-bottom:.75rem">
+        <span class="tag accent">Acquired</span>
+        <span class="tag">0→1 Product</span>
+        <span class="tag">Co-Founder & CPO</span>
+      </div>
+      <h1 class="dd-hero-title">Cronos: Building Shift Scheduling & Payroll for LATAM from Zero</h1>
+      <p class="dd-subtitle">How we went from napkin sketches to 1,300 users and an acquisition in 18 months — the product decisions, real artifacts, and lessons from building for Colombia's restaurant industry.</p>
+
+      <div class="dd-stats">
+        <div class="dd-stat"><strong>1,300</strong><span>Paying users</span></div>
+        <div class="dd-stat"><strong>&lt; 3 mo</strong><span>Idea to MVP</span></div>
+        <div class="dd-stat"><strong>95%</strong><span>Retention</span></div>
+        <div class="dd-stat"><strong>18 mo</strong><span>Zero to exit</span></div>
+      </div>
+
+      <!-- Video -->
+      <div class="dd-video">
+        <iframe src="https://www.youtube.com/embed/0xntdhXKJKE" title="Cronos Product Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p style="font-size:.82rem;color:var(--muted);text-align:center;margin-bottom:2.5rem;">Cronos product walkthrough — shift scheduling, payroll, and team management in action.</p>
+
+      <!-- Chapter 1: The Problem -->
+      <div class="dd-chapter">
+        <div class="dd-chapter-num">Chapter 1</div>
+        <h3>The Problem Nobody Was Solving</h3>
+        <p>Colombia's small restaurants and bars — often 5 to 30 employees — were managing shift scheduling on WhatsApp groups and running payroll on paper or Excel. Managers were spending hours each week reconciling hours, handling shift swaps through text messages, and manually calculating complex Colombian labor rules (overtime, night surcharges, Sunday premiums, "dominical" days).</p>
+        <p>The US had tools like 7Shifts and Homebase. But nothing existed for LATAM that handled local payroll regulations, Spanish-language UX, or the specific workflows of the Colombian restaurant industry. That gap was our starting point.</p>
+      </div>
+
+      <!-- Chapter 2: Discovery & Validation -->
+      <div class="dd-chapter">
+        <div class="dd-chapter-num">Chapter 2</div>
+        <h3>Discovery: Getting Uncomfortably Close to the User</h3>
+        <p>We ran structured user interviews with restaurant and bar managers across Bogotá, applying design thinking to uncover the real pain points — not just what users said they wanted, but how they actually managed shifts and payroll day to day.</p>
+        <p>What we found: managers didn't just need a scheduling tool. They needed an end-to-end system that connected shift data directly to payroll calculations, because the real pain was the hours spent reconciling what happened (actual clock-ins) with what was planned (the schedule) — and then translating that into correct Colombian payroll.</p>
+
+        <div class="dd-artifact">
+          <div class="dd-artifact-label">Real Artifact — Competitive Analysis (from Tips PRD)</div>
+          <h4>Mapping the Competitive Landscape</h4>
+          <p>We benchmarked against 7Shifts, Homebase, and local alternatives to identify what they got right and where the LATAM gap was. Key insight: US tools treated tips and payroll as separate systems. In Colombia, tips ("propinas") are deeply intertwined with compensation and must follow specific legal formulas. No existing tool handled this.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 3: Building the MVP -->
+      <div class="dd-chapter">
+        <div class="dd-chapter-num">Chapter 3</div>
+        <h3>From Wireframes to MVP in Under 3 Months</h3>
+        <p>I owned the product from concept through wireframes to shipped MVP. We started with hand-drawn wireframes — literally sketching out every screen on grid paper — then iterated rapidly based on user feedback before writing any code.</p>
+
+        <div class="dd-artifact">
+          <div class="dd-artifact-label">Real Artifact — MVP Wireframes</div>
+          <h4>Hand-Drawn UI Designs</h4>
+          <p>Our early designs were sketched by hand on grid paper with detailed annotations. The payroll screen ("Hoja de Horas" — timesheet) connected scheduling data to payroll processing. Each wireframe included interaction notes, edge cases, and flow annotations — this was how we moved fast without losing fidelity on complex workflows like multi-step payroll processing.</p>
+        </div>
+
+        <div class="dd-artifact">
+          <div class="dd-artifact-label">Real Artifact — 38-Page MVP Requirements</div>
+          <h4>Annotated Screenshot Specs</h4>
+          <p>The MVP requirement document ran 38 pages of annotated screenshots — every screen captured with handwritten notes marking what needed to change, new features to add, and edge cases to handle. This was our living spec: fast, visual, and constantly updated as we learned from users.</p>
+        </div>
+
+        <p>The MVP shipped with three core modules: shift scheduling (create, assign, swap shifts), clock-in/out with geolocation verification, and a timesheet that fed directly into payroll calculations. We built on Bubble.io for speed, which let us ship in under 3 months.</p>
+      </div>
+
+      <!-- Chapter 4: Payroll — The Hard Part -->
+      <div class="dd-chapter">
+        <div class="dd-chapter-num">Chapter 4</div>
+        <h3>Payroll: The Hardest Problem We Solved</h3>
+        <p>Colombian payroll is not simple math. Every employer does it slightly differently — overtime rules, night surcharges ("recargos nocturnos"), Sunday/holiday premiums, and tip distribution all follow complex legal formulas that vary by establishment.</p>
+
+        <div class="dd-artifact">
+          <div class="dd-artifact-label">Real Artifact — Payroll Design Flow</div>
+          <h4>Multi-Step Payroll Processing</h4>
+          <p>We designed a guided, multi-step payroll flow. Before the manager could finalize payroll, the system forced a shift review step — flagging shifts with missing clock-ins or clock-outs, and shifts where actual hours diverged significantly from scheduled hours. Then came the "Novedades Horarias" (hourly novelties) review, breaking down each employee's hours into ordinary, overtime, and night hours. Each column was editable, giving managers control while the system did the heavy lifting.</p>
+          <ul>
+            <li>Step 1: Select payroll period and initiate</li>
+            <li>Step 2: Review flagged shifts (missing entries, &gt;1hr discrepancies)</li>
+            <li>Step 3: Confirm hourly breakdowns per employee (ordinary, overtime, night)</li>
+            <li>Step 4: Apply adjustments and process</li>
+          </ul>
+        </div>
+
+        <div class="dd-artifact">
+          <div class="dd-artifact-label">Real Artifact — Tips PRD</div>
+          <h4>Tips Calculation Feature (Full PRD)</h4>
+          <p>One of our most detailed product documents. The Tips PRD included problem alignment, value/risk assessment, competitive analysis against 7Shifts and Homebase, two detailed user narratives, explicit goals and non-goals, and key flow definitions. This is how we approached every major feature — structured problem framing before any design or engineering work.</p>
+          <ul>
+            <li>Problem: Restaurants distribute tips differently (equal split, hours-based, role-based) with no standard tool</li>
+            <li>Goal: Automate tip calculation within the payroll flow using configurable rules</li>
+            <li>Non-goal: We explicitly scoped out tip reporting for tax purposes in v1</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Chapter 5: Iteration & Retention -->
+      <div class="dd-chapter">
+        <div class="dd-chapter-num">Chapter 5</div>
+        <h3>Iterating Through Real User Friction</h3>
+        <p>Shipping the MVP was just the beginning. We built structured feedback loops to capture exactly where users were getting stuck — and prioritized ruthlessly based on churn risk and activation impact.</p>
+
+        <div class="dd-artifact">
+          <div class="dd-artifact-label">Real Artifact — Implementation Friction Tracker</div>
+          <h4>Onboarding & Activation Issues</h4>
+          <p>We maintained a structured spreadsheet tracking every friction point in the implementation journey — from password creation to payroll configuration. Each item was categorized, rated by importance, documented with real cases, and paired with potential solutions. Examples:</p>
+          <ul>
+            <li>Password reset links expired after one use — employees got stuck on their first login (Med/High priority)</li>
+            <li>Precise geolocation permissions were unintuitive — employees couldn't clock in, leading to frustration (High priority)</li>
+            <li>Payroll math configuration was confusing — every restaurant calculates "novedades" differently (High priority)</li>
+            <li>Adding users to multiple locations required navigating to Settings — not discoverable (Medium priority)</li>
+          </ul>
+        </div>
+
+        <div class="dd-artifact">
+          <div class="dd-artifact-label">Real Artifact — Churn Post-Mortem</div>
+          <h4>Structured Churn Analysis: The Amelia Case</h4>
+          <p>When a trial customer churned, we ran a structured post-mortem. The Amelia case was a restaurant that signed up but never fully activated. Our analysis walked through the user's journey, identified the failure points, and critically asked: was this a mainstream churn signal (indicating a product gap we need to fix) or an edge case (a customer outside our ICP)?</p>
+          <p>Conclusion: the churn was driven by an edge-case mismatch — the restaurant had an unusual staffing model that didn't fit our scheduling paradigm. We documented it, extracted any actionable learnings, and moved on without over-rotating the roadmap. This disciplined approach to churn analysis kept us focused on building for our core user.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 6: Mobile & Task Management -->
+      <div class="dd-chapter">
+        <div class="dd-chapter-num">Chapter 6</div>
+        <h3>Going Mobile: Task Management for the Floor</h3>
+        <p>Restaurant managers don't sit at desks. Once the core scheduling and payroll product was stable, we extended into mobile-first task management — letting managers assign, track, and verify operational tasks (cleaning checklists, prep lists, opening/closing procedures) directly from their phones.</p>
+
+        <div class="dd-artifact">
+          <div class="dd-artifact-label">Real Artifact — Mobile Designs</div>
+          <h4>Task Management Flows (Tareas Mobile)</h4>
+          <p>We designed mobile task management with the same philosophy: structured, visual, and connected to the employee data we already had. Tasks could be assigned by role, tracked with completion status, and reviewed by managers — all from a mobile interface designed for the fast-paced restaurant floor.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 7: GTM & Growth -->
+      <div class="dd-chapter">
+        <div class="dd-chapter-num">Chapter 7</div>
+        <h3>Go-to-Market: Cold Outreach in Colombia</h3>
+        <p>We built our initial customer base through direct outreach — cold emails, WhatsApp messages, and in-person visits to restaurants in Bogotá. Our marketing was in Spanish, localized for the Colombian market, and focused on the specific pain points we'd validated in discovery.</p>
+
+        <div class="dd-artifact">
+          <div class="dd-artifact-label">Real Artifact — Cold Outreach Campaign</div>
+          <h4>Mass Email & Direct Marketing</h4>
+          <p>Our cold outreach templates were crafted around the specific pain points restaurant managers had shared in interviews — framed not as "here's our tool" but as "we know the problem you're solving with WhatsApp and Excel." Combined with referral incentives and local partnerships, this drove LTV/CAC above 4x.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 8: Exit -->
+      <div class="dd-chapter">
+        <div class="dd-chapter-num">Chapter 8</div>
+        <h3>The Exit: Acquired by Bibisoft</h3>
+        <p>Within 18 months, Cronos had grown to 1,300 paying users across top restaurants and bars in Colombia. We were offered $300K in seed financing — but instead accepted an acquisition offer from Bibisoft, a POS provider that saw Cronos as the missing workforce management layer for their restaurant clients.</p>
+        <p>The acquisition validated our thesis: purpose-built tools for LATAM's service industry, designed around local regulations and real workflows, could outperform localized versions of US products. The product I built continues to serve restaurants across LATAM.</p>
+      </div>
+
+      <!-- Timeline summary -->
+      <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border);">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:1rem;color:var(--text);">Timeline</h3>
+        <div class="dd-timeline">
+          <div class="dd-timeline-item">
+            <h4>Q1 2024 — Discovery & Validation</h4>
+            <p>User interviews with restaurant managers in Bogotá. Competitive analysis. Problem definition.</p>
+          </div>
+          <div class="dd-timeline-item">
+            <h4>Q2 2024 — MVP Build</h4>
+            <p>Hand-drawn wireframes → 38-page annotated specs → shipped scheduling + clock-in + payroll on Bubble.io.</p>
+          </div>
+          <div class="dd-timeline-item">
+            <h4>Q3 2024 — Launch & First Users</h4>
+            <p>Cold outreach campaign. First paying restaurants onboarded. Implementation friction tracker created.</p>
+          </div>
+          <div class="dd-timeline-item">
+            <h4>Q4 2024 — Iteration & Scale</h4>
+            <p>Payroll v2 (tips, multi-step review). Task management mobile. Structured churn analysis. 1,000+ users.</p>
+          </div>
+          <div class="dd-timeline-item">
+            <h4>Q1 2025 — Acquisition</h4>
+            <p>1,300 users, 95% retention. Acquired by POS provider Bibisoft.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;text-align:center;">
+        <a href="#work" class="btn btn-secondary">← Back to all work</a>
+      </div>
+
     </div>
   </section>
 
