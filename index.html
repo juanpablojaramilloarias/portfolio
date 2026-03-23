@@ -19,7 +19,9 @@
       --radius:    10px;
       --shadow:    0 1px 4px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 56px; }
+    section, .deep-dive { scroll-margin-top: 56px; }
+    .dd-chapter { scroll-margin-top: 100px; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--bg);
@@ -47,7 +49,7 @@
       border-bottom: 1px solid var(--border);
     }
     nav .inner {
-      max-width: 800px; margin: 0 auto; padding: 0 1.5rem;
+      max-width: 800px; margin: 0 auto; padding: .6rem 1.5rem;
       display: flex; align-items: center; justify-content: space-between;
       height: 54px;
     }
@@ -86,6 +88,9 @@
       background: var(--tag-bg); color: var(--muted);
       font-size: .72rem; font-weight: 600; letter-spacing: .04em;
       padding: .2rem .6rem; border-radius: 99px;
+    }
+    .tag.jump-active {
+      background: var(--text); color: #fff;
     }
     .tag.accent { background: var(--accent-lt); color: var(--accent); }
 
@@ -205,7 +210,7 @@
     .dd-stat span { font-size: .78rem; color: var(--muted); }
     .dd-video {
       position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-      border-radius: var(--radius); margin: 2rem 0; box-shadow: var(--shadow);
+      border-radius: var(--radius); margin: 2rem 0 0; box-shadow: var(--shadow);
     }
     .dd-video iframe {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: var(--radius);
@@ -341,9 +346,10 @@
       </div>
 
       <div class="dd-video">
-        <iframe src="https://www.youtube.com/embed/0xntdhXKJKE" title="Cronos Product Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/0xntdhXKJKE?cc_load_policy=1&cc_lang_pref=en" title="Cronos Product Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <nav style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem;margin-bottom:.5rem;align-items:center">
+
+      <div id="cronos-jump" style="position:sticky;top:55px;z-index:99;background:rgba(250,250,250,.92);backdrop-filter:blur(10px);margin-left:-1.5rem;margin-right:-1.5rem;padding:.55rem 1.5rem;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:.5rem;align-items:center">
         <span style="font-size:.78rem;color:var(--muted);font-weight:600">Jump to:</span>
         <a href="#ch-building" class="tag" style="text-decoration:none;cursor:pointer">Building It</a>
         <a href="#ch-product" class="tag" style="text-decoration:none;cursor:pointer">The Product</a>
@@ -351,7 +357,7 @@
         <a href="#ch-exit" class="tag" style="text-decoration:none;cursor:pointer">The Exit</a>
         <span style="color:var(--border);margin:0 .2rem">|</span>
         <a href="#prds" style="font-size:.78rem;color:var(--accent);text-decoration:none;font-weight:600">Skip to PRDs →</a>
-      </nav>
+      </div>
 
       <!-- 1. Building it -->
       <div class="dd-chapter" id="ch-building">
@@ -628,6 +634,32 @@
       document.body.style.overflow = '';
     }
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLB(); });
+
+    // Active chapter highlighting in jump menu
+    (function() {
+      var chapters = ['ch-building','ch-product','ch-wild','ch-exit'];
+      var links = {};
+      chapters.forEach(function(id) {
+        var a = document.querySelector('#cronos-jump a[href="#' + id + '"]');
+        if (a) links[id] = a;
+      });
+      var active = null;
+      function setActive(id) {
+        if (active === id) return;
+        if (active && links[active]) links[active].classList.remove('jump-active');
+        active = id;
+        if (id && links[id]) links[id].classList.add('jump-active');
+      }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      }, { rootMargin: '-70px 0px -60% 0px', threshold: 0 });
+      chapters.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    })();
   </script>
 
 
