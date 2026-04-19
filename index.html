@@ -319,8 +319,24 @@
         </div>
       </div>
       <p>I co-founded and sold a restaurant payroll startup in Colombia. Before that, I grew a $12M MRR enterprise fintech portfolio across LATAM. Now I build with AI.</p>
-      <div class="hero-links">
-        <a class="btn btn-primary" href="#cronos-deep-dive">View my work</a>
+      <div style="margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;">
+        <a href="#cronos-deep-dive" style="display:block;padding:.9rem 1rem;border:1px solid #fed7aa;border-left:3px solid #f97316;border-radius:10px;text-decoration:none;transition:box-shadow .15s,transform .15s;background:#fff7ed;" onmouseover="this.style.boxShadow='0 4px 16px rgba(249,115,22,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+          <div style="font-size:1.3rem;margin-bottom:.35rem;">🏢</div>
+          <div style="font-weight:600;font-size:.9rem;color:var(--text)">Cronos</div>
+          <div style="font-size:.78rem;color:var(--muted);margin-top:.15rem">Company I founded and sold — shift scheduling for restaurants</div>
+        </a>
+        <a href="#prds" style="display:block;padding:.9rem 1rem;border:1px solid #bfdbfe;border-left:3px solid #3b82f6;border-radius:10px;text-decoration:none;transition:box-shadow .15s,transform .15s;background:#eff6ff;" onmouseover="this.style.boxShadow='0 4px 16px rgba(59,130,246,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+          <div style="font-size:1.3rem;margin-bottom:.35rem;">📄</div>
+          <div style="font-weight:600;font-size:.9rem;color:var(--text)">PRDs</div>
+          <div style="font-size:.78rem;color:var(--muted);margin-top:.15rem">Product specs for Airbnb, payments, and more</div>
+        </a>
+        <a href="#builds" style="display:block;padding:.9rem 1rem;border:1px solid #e9d5ff;border-left:3px solid #a855f7;border-radius:10px;text-decoration:none;transition:box-shadow .15s,transform .15s;background:#faf5ff;" onmouseover="this.style.boxShadow='0 4px 16px rgba(168,85,247,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+          <div style="font-size:1.3rem;margin-bottom:.35rem;">🤖</div>
+          <div style="font-weight:600;font-size:.9rem;color:var(--text)">AI Builds</div>
+          <div style="font-size:.78rem;color:var(--muted);margin-top:.15rem">Apps and agents built with Claude, ElevenLabs & more</div>
+        </a>
+      </div>
+      <div style="margin-top:1rem;">
         <a class="btn btn-secondary" href="#contact">Say hello</a>
       </div>
     </div>
@@ -560,6 +576,16 @@
           <a href="https://kyc-sim-brex.streamlit.app/" target="_blank" class="btn btn-primary" style="font-size:.82rem;margin-top:.6rem">🔍 Live Dashboard →</a>
           <div class="tags"><span class="tag accent">AI-built</span><span class="tag">Claude API</span><span class="tag">Fintech</span><span class="tag">Compliance</span></div>
         </div>
+
+        <!-- SliceDex -->
+        <div class="card">
+          <div class="card-icon" style="background:#fff7ed">🍕</div>
+          <h3>SliceDex</h3>
+          <p class="card-meta">AI-built · ElevenLabs · Claude API · NYC Pizza Price Tracker</p>
+          <p class="card-desc">An AI agent named Heather cold-calls every pizza shop in NYC to ask the price of a plain cheese slice — then maps the results. Inspired by The Guinndex.</p>
+          <a href="https://slicedex.vercel.app" target="_blank" class="btn btn-primary" style="font-size:.82rem;margin-top:.6rem">🍕 Live Site →</a>
+          <div class="tags"><span class="tag accent">AI-built</span><span class="tag">ElevenLabs</span><span class="tag">Claude API</span><span class="tag">Shipped</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -634,6 +660,27 @@
       document.body.style.overflow = '';
     }
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLB(); });
+
+    // Fix: internal anchor clicks wait for full page load so layout shifts don't mis-target the scroll
+    (function() {
+      var pending = null;
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        var id = a.getAttribute('href').slice(1);
+        var target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        function doScroll() {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        if (document.readyState === 'complete') {
+          doScroll();
+        } else {
+          window.addEventListener('load', doScroll, { once: true });
+        }
+      });
+    })();
 
     // Active chapter highlighting in jump menu
     (function() {
