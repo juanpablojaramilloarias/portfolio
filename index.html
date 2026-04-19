@@ -661,9 +661,8 @@
     }
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLB(); });
 
-    // Fix: internal anchor clicks wait for full page load so layout shifts don't mis-target the scroll
+    // Fix: internal anchor clicks wait for all images to finish loading/decoding before scrolling
     (function() {
-      var pending = null;
       document.addEventListener('click', function(e) {
         var a = e.target.closest('a[href^="#"]');
         if (!a) return;
@@ -674,10 +673,18 @@
         function doScroll() {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        if (document.readyState === 'complete') {
+        var imgs = Array.from(document.querySelectorAll('img')).filter(function(img) { return !img.complete; });
+        if (imgs.length === 0) {
           doScroll();
         } else {
-          window.addEventListener('load', doScroll, { once: true });
+          var remaining = imgs.length;
+          imgs.forEach(function(img) {
+            function onDone() { if (--remaining === 0) doScroll(); }
+            img.addEventListener('load', onDone, { once: true });
+            img.addEventListener('error', onDone, { once: true });
+          });
+          // Fallback in case some images never fire
+          setTimeout(doScroll, 1500);
         }
       });
     })();
